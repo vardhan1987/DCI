@@ -32,6 +32,7 @@ app.get("/webhook", function (req, res) {
 app.post("/webhook", function (req, res) {
     // Make sure this is a page subscription
     if (req.body.object == "page") {
+      console.log(req);
         // Iterate over each entry
         // There may be multiple entries if batched
         req.body.entry.forEach(function(entry) {
@@ -168,7 +169,7 @@ function findMovie(userId, movieTitle) {
                 sendMessage(userId, {text: movieObj.Error});
             }
         } else {
-            sendMessage(userId, {text: "Something went wrong. Try again."});
+            sendMessage(userId, {text: "hi"});
         }
     });
 }
