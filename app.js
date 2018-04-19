@@ -31,7 +31,7 @@ app.get("/webhook", function (req, res) {
 // All callbacks for Messenger will be POST-ed here
 app.post("/webhook", function (req, res) {
 
-      console.log(req);    // Make sure this is a page subscription
+      console.log("hi",req);    // Make sure this is a page subscription
     if (req.body.object == "page") {
 
         // Iterate over each entry
@@ -54,7 +54,7 @@ app.post("/webhook", function (req, res) {
 function processPostback(event) {
     var senderId = event.sender.id;
     var payload = event.postback.payload;
-    console.log(req);
+    console.log("processPostback>>",event);
     if (payload === "Greeting") {
         // Get user's first name from the User Profile API
         // and include it in the greeting
