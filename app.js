@@ -40,7 +40,7 @@ app.post("/webhook", function (req, res) {
             // Iterate over each messaging event
             entry.messaging.forEach(function(event) {
                 if (event.postback) {
-                    processPostback(event);
+                    processPostback(event,res);
                 } else if (event.message) {
                     processMessage(event);
                 }
@@ -51,10 +51,11 @@ app.post("/webhook", function (req, res) {
     }
 });
 
-function processPostback(event) {
+function processPostback(event,res) {
     var senderId = event.sender.id;
     var payload = event.postback.payload;
     console.log("processPostback>>",event);
+    res.sendMessage({"text":"Hello from server"});
     if (payload === "Greeting") {
         // Get user's first name from the User Profile API
         // and include it in the greeting
